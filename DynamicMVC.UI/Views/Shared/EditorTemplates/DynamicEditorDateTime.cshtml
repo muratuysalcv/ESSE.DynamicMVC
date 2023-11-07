@@ -1,0 +1,24 @@
+@model object
+@{ 
+    var controller = (DynamicMVC.UI.Controllers.DynamicController)this.ViewContext.Controller;
+    var TableName = controller.EntityType.Name;
+    var ColumnName = ((DynamicMVC.UI.DynamicMVC.ViewModels.DynamicPropertyViewModels.DynamicPropertyEditorViewModel)this.ViewContext.ViewData.Values.ToList()[1]).DisplayName;
+    string resourceKey = "table_" + TableName + "_field_" + ColumnName;
+    var dbRes = new DbResourceProvider();
+    var labelString = dbRes.GetResource(resourceKey, Culture) + "";
+    if (labelString == resourceKey || labelString == resourceKey)
+    {
+        labelString = ColumnName.Replace("_", " ");
+    }
+}
+<div class="form-group">
+    <label style="text-transform:capitalize">
+        @labelString
+    </label>
+    <div class="">
+        @Html.TextBoxFor(m => m, new { @class = "form-control datepicker" })
+    </div>
+</div>
+
+
+

@@ -1,0 +1,96 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<script src="/Apps/__sy/content/terminal/js/jquery-1.7.1.min.js"></script>
+<script src="/Apps/__sy/content/terminal/js/jquery.mousewheel-min.js"></script>
+<script src="/Apps/__sy/content/terminal/js/jquery.terminal.min.js"></script>
+<link href="/Apps/__sy/content/terminal/css/jquery.terminal.min.css" rel="stylesheet" />
+<script src="/Apps/__sy/content/terminal/js/keyboard.js"></script>
+<div id="terminal">
+
+</div>
+<script>
+    var term;
+    jQuery(function ($) {
+        var id = 1;
+        term = $('body').terminal(function (command, term) {
+            term.pause();
+            $.ajax({
+                type: "POST",
+                url: '/console/execute',
+                data: { Command: command },
+                success: function (data) {
+                    debugger;
+                    if (data.status == 'error') {
+                        term.error(data.message);
+                    }
+                    else {
+                        term.echo(data.message);
+                    }
+                    term.resume();
+                },
+                dataType: 'json'
+            });
+        },
+            {
+                                greetings: "Caution : Console application is acceses resources and database. Because be careful and you take all own risk.",
+                                prompt: "e-sql> "
+                            }
+
+        );
+
+        //        term = $('#terminal').terminal(function (command, term) {
+        //            if (command == 'help') {
+        //                term.echo("available commands are mysql, js, test");
+        //            } else if (command == 'mysql') {
+        //                term.push(function (command, term) {
+        //                    term.pause();
+        //                    $.jrpc("/console/index",
+        //                        "get",
+        //                        [command],
+        //                        function (data) {
+        //                            term.resume();
+        //                            if (data.error) {
+        //                                if (data.error.error && data.error.error.message) {
+        //                                    term.error(data.error.error.message);
+        //                                } else if (data.error.message) {
+        //                                    term.error(data.error.message);
+        //                                }
+        //                            } else {
+        //                                if (typeof data.result == 'boolean') {
+        //                                    term.echo(data.result ? 'success' : 'fail');
+        //                                } else {
+        //                                    var len = data.result.length;
+        //                                    for (var i = 0; i < len; ++i) {
+        //                                        term.echo(data.result[i].join(' | '));
+        //                                    }
+        //                                }
+        //                            }
+        //                        },
+        //                        function (xhr, status, error) {
+        //                            term.error('[AJAX] ' + status +
+        //                                ' - Server reponse is: \n' +
+        //                                xhr.responseText);
+        //                            term.resume();
+        //                        });
+        //                }, {
+        //                        greetings: "This is example of using mysql from terminal\n\
+        //you are allowed to execute: select, insert, update and delete from/to table:\n\
+        //    table test(integer_value integer, varchar_value varchar(255))",
+        //                        prompt: "mysql> "
+        //                    });
+        //            } else {
+        //                term.echo("unknow command " + command);
+        //            }
+        //        }, {
+        //                greetings: "multiply terminals demo use help to see available commands",
+        //                onBlur: function () {
+        //                    // prevent loosing focus
+        //                    return false;
+        //                }
+        //            });
+    });
+
+</script>

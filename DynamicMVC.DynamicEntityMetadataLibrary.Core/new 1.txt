@@ -1,0 +1,12 @@
+
+
+
+1- Satıcı siparişi oluşması lazım.
+
+2- Ceza veya ödül çıkabilir. Ceza sistem karar verse bile, satın alma bu cezayı uygulamayabilir.
+
+3- Bağlantı yapılan firmalar bağlantının ,............... ,ilave anlaşma, toplam ne kadar hak ettiklerini görecekler.
+
+4- Resim 1 filtrede sorun var düzeltilecek.
+
+-------------------------------------------------

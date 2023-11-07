@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - MAS ( Model Application System )</title>
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/bundle/css")
+    <link rel="apple-touch-icon" href="/themes/theme1/images/favicon/apple-touch-icon-152x152.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/themes/theme1/images/favicon/favicon-32x32.png">
+    <link href="/themes/theme1/css/icon.css" rel="stylesheet">
+    <!-- BEGIN: VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="/themes/theme1/vendors/vendors.min.css">
+    <!-- END: VENDOR CSS-->
+    <!-- BEGIN: Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="/themes/theme1/css/themes/horizontal-menu-template/materialize.css">
+    <link rel="stylesheet" type="text/css" href="/themes/theme1/css/themes/horizontal-menu-template/style.css">
+    <link rel="stylesheet" type="text/css" href="/themes/theme1/css/layouts/style-horizontal.css">
+    <link rel="stylesheet" type="text/css" href="/themes/theme1/css/pages/dashboard.css">
+    <link href="/Plugins/fa/css/all.min.css" rel="stylesheet" />
+    <!-- END: Page Level CSS-->
+    <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="/themes/theme1/css/custom/custom.css">
+    <script src="/Content/vue/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+    <!-- END: Custom CSS-->
+</head>
+<body class="horizontal-layout page-header-light horizontal-menu preload-transitions 2-columns   " data-open="click" data-menu="horizontal-menu" data-col="2-columns">
+
+    @Html.Partial("_Header")
+
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav"></ul>
+            </div>
+        </div>
+    </div>*@
+
+
+    <!-- BEGIN: Page Main-->
+    <div id="main">
+        <div class="row">
+            <div class="col s12">
+                <div class="container">
+                    @RenderBody()
+                    @Html.Partial("_AsideBar")
+                </div>
+                <div class="content-overlay"></div>
+            </div>
+        </div>
+    </div>
+
+    @Html.Partial("_Footer")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <!-- END: Footer-->
+    <!-- BEGIN VENDOR JS-->
+    <script src="/themes/theme1/js/vendors.min.js"></script>
+    <!-- BEGIN VENDOR JS-->
+    <!-- BEGIN PAGE VENDOR JS-->
+    <script src="/themes/theme1/vendors/chartjs/chart.min.js"></script>
+    <!-- END PAGE VENDOR JS-->
+    <!-- BEGIN THEME  JS-->
+    <script src="/themes/theme1/js/plugins.js"></script>
+    <script src="/themes/theme1/js/search.js"></script>
+    <script src="/themes/theme1/js/custom/custom-script.js"></script>
+    <!-- END THEME  JS-->
+    <!-- BEGIN PAGE LEVEL JS-->
+    <script src="/themes/theme1/js/scripts/dashboard-ecommerce.js"></script>
+</body>
+</html>

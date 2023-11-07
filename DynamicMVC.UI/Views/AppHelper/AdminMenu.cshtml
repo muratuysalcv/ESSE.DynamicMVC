@@ -1,0 +1,34 @@
+﻿@model DynamicMVC.UI.DB.app
+@{
+    Layout = null;
+}
+<h3>App Admin Menü</h3>
+<ul>
+    <li>
+        <a href="@Url.Action("Create","app_module",new { app_id=Model.id })">
+            Create New Module
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Create","app_process",new { app_id=Model.id })">
+            Create New Process
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Create","app_connectionrelation",new { app_id=Model.id })">
+            Create New Connection Relation
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Create","app_datasource",new { app_id=Model.id })">
+            Create New Data Source
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Create","app_dashboard",new { app_id=Model.id })">
+            Create App Dashboard
+        </a>
+    </li>
+
+</ul>
+

@@ -1,0 +1,20 @@
+﻿@{
+    var id = ViewBag.id + "";
+    var name = ViewBag.name + "";
+
+    Layout = null;
+}
+<ul>
+    <li>
+        <a href="@Url.Action("Create","app_module",new { AppId=id })">
+            Create New Module
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Action("Create","app_process",new { AppId=id })">
+            Create New Process
+        </a>
+    </li>
+</ul>
+
+

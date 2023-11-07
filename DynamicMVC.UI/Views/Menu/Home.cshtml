@@ -1,0 +1,43 @@
+﻿@model List<DynamicMVC.UI.DB.app_navigation>
+@using System.Linq;
+@{
+    Layout = null;
+}
+<ul class="left hide-on-med-and-down" id="ul-horizontal-nav" data-menu="menu-navigation">
+    @foreach (var item in Model)
+    {
+        if (item.parent_navigation == null)
+        {
+            <li>
+                <a class="dropdown-menu" href="Javascript:void(0)" data-target="@(item.system_name)Dropdown">
+                    @if (item.app_icon != null)
+                    {
+                        @Html.Raw(item.app_icon.render_html())
+                    }
+                    <span>
+                        <span class="dropdown-title" data-i18n="Dashboard">@item.name</span>
+                        @if (Model.Count(x => x.parent_navigation_id == item.id) > 0)
+                        {
+                            <i class="material-icons right">keyboard_arrow_down</i>
+                        }
+                    </span>
+                </a>
+                @if (Model.Count(x => x.parent_navigation_id == item.id) > 0)
+                {
+                    var childs = Model.Where(x => x.parent_navigation_id == item.id);
+                    <ul class="dropdown-content dropdown-horizontal-list" id="DashboardDropdown">
+                        @foreach (var child_item in childs)
+                        {
+                            <li data-menu="">
+                                <a href="dashboard-modern.html"><span data-i18n="Modern">@child_item.name</span></a>
+                            </li>
+                        }
+                    </ul>
+                }
+
+            </li>
+        }
+
+    }
+
+</ul>

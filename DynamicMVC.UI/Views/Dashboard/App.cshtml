@@ -1,0 +1,7 @@
+﻿@model DynamicMVC.UI.DB.app
+@{
+    ViewBag.Title = Model.name + " - Dashboard";
+}
+@Html.Action("AdminMenu", "AppHelper", new { id = Model.system_name })
+
+

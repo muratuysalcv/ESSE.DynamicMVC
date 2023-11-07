@@ -1,0 +1,44 @@
+@using DynamicMVC.UI.DynamicMVC
+@using DynamicMVC.UI.DynamicMVC.Helpers
+@using DynamicMVC.UI.DynamicMVC.ViewModels.DynamicPropertyViewModels
+
+@model object
+
+@{
+    var dynamicPropertyEditorViewModel = (DynamicPropertyEditorViewModel)ViewData["DynamicPropertyEditorViewModel"];
+    var dynamicEditorDropDownViewModel = dynamicPropertyEditorViewModel.DynamicEditorDropDownViewModel;
+
+    var list = new List<SelectListItem>() {
+        new SelectListItem() {
+            Text="---"
+        }
+    };
+    list.AddRange(dynamicEditorDropDownViewModel.SelectListItems);
+
+    dynamicEditorDropDownViewModel.SelectListItems = list;
+
+    var controller = (DynamicMVC.UI.Controllers.DynamicController)this.ViewContext.Controller;
+    var TableName = controller.EntityType.Name;
+    var ColumnName = ((DynamicMVC.UI.DynamicMVC.ViewModels.DynamicPropertyViewModels.DynamicPropertyEditorViewModel)this.ViewContext.ViewData.Values.ToList()[1]).DisplayName;
+    string resourceKey = "table_" + TableName + "_field_" + ColumnName;
+    var dbRes = new DbResourceProvider();
+    var labelString = dbRes.GetResource(resourceKey, Culture) + "";
+    if (labelString == resourceKey || labelString == resourceKey)
+    {
+        labelString = ColumnName.Replace("_", " ");
+    }
+
+}
+
+<div class="form-group">
+    <label style="text-transform:capitalize">
+        @labelString
+    </label>
+    <div class="">
+        @Html.DropDownListFor(m => m, dynamicEditorDropDownViewModel.SelectListItems, 
+       new { @class = "form-control" })
+    </div>
+</div>
+
+
+
